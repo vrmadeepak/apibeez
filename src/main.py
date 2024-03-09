@@ -3,6 +3,9 @@ from fastapi import FastAPI
 from router import router
 from fastapi_versioning import VersionedFastAPI, version
 
+from src.database.service import engine
+# models.Base.metadata.create_all(bind=engine)
+
 app = FastAPI()
 
 
