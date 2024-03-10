@@ -16,6 +16,7 @@ if config.config_file_name is not None:
 
 # add your model's MetaData object here
 # for 'autogenerate' support
+# alembic revision --autogenerate -m "comment"
 from src.user import models as user_models
 from src.database.service import Base
 target_metadata = Base.metadata
