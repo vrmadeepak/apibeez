@@ -7,8 +7,6 @@ from sqlalchemy.orm import Session
 from src.user.schemas import SendOtpRequest, VerifyOtpRequest
 from src.user.service import send_otp, verify_otp
 
-from src.user.crud import get_referral_code
-
 user_router = APIRouter()
 
 
@@ -34,6 +32,4 @@ def verify_user_otp(payload: VerifyOtpRequest, db: Session = Depends(get_db)):
     content, error = verify_otp(payload.email, payload.otp, db)
     if error:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=error)
-    # if payload.email.endswith("@pop.co"):
-    #     raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="email not found")
     return JSONResponse(content=content, status_code=status.HTTP_200_OK)
